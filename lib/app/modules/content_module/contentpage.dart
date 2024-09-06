@@ -39,7 +39,7 @@ class ContentPage extends GetWidget<ContentController> {
         child: ListView(
           children: [
             TextFormField(
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               controller: controller.headingcontroller,
               decoration: InputDecoration(
                   hintText: "Enter Headline.....",
@@ -53,7 +53,7 @@ class ContentPage extends GetWidget<ContentController> {
               height: 20,
             ),
             TextFormField(
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               controller: controller.contentcontroller,
               maxLines: 20,
               decoration: InputDecoration(

@@ -8,7 +8,7 @@ class SplashPage extends GetWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(
-      Duration(seconds: 5),
+      const Duration(seconds: 5),
       () => Get.toNamed(AppRoutes.homescreen),
     );
     return Scaffold(

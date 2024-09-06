@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todoapp/app/modules/home_module/homecontroller.dart';
 import 'package:todoapp/app/routes/approutes.dart';
 
 class ContentController extends GetxController {
@@ -63,6 +64,10 @@ class ContentController extends GetxController {
             message: "Data Updated Successfully",
           ));
         }
+        Get.put(HomeController());
+        final homecontroller = Get.find<HomeController>();
+        homecontroller.fetchData();
+        Get.toNamed(AppRoutes.homescreen);
       } else {
         // Add new data
         await _dataCollection.add({
@@ -82,9 +87,4 @@ class ContentController extends GetxController {
     }
   }
 
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
 }

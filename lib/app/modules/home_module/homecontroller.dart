@@ -20,9 +20,33 @@ class HomeController extends GetxController {
     }
   }
 
+
+ Future<void> deleteData(String heading) async {
+    try {
+      CollectionReference data = FirebaseFirestore.instance.collection('datas');
+
+      QuerySnapshot snapshot = await data
+          .where('heading', isEqualTo: heading)
+          .get();
+
+      if (snapshot.docs.isNotEmpty) {
+        // Delete the first document that matches the heading
+        await snapshot.docs.first.reference.delete();
+        Get.showSnackbar(const GetSnackBar(
+          message: "Data Deleted Successfully",
+        ));
+      }
+    } catch (e) {
+      print('Error deleting data: $e');
+      Get.showSnackbar(GetSnackBar(
+        message: "Error: $e",
+      ));
+    }
+    // Refresh data after deletion
+    fetchData();
+  }
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
     fetchData();
   }
